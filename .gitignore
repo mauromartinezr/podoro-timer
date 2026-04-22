@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Frontend build output
+frontend/dist/
+
+# Wails and Go build output
+build/bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs and local environment
+*.log
+.env
+.env.*
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,371 @@
+.app-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+    gap: 24px;
+    min-height: 100vh;
+    padding: 28px;
+    background:
+        radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.85), transparent 34%),
+        linear-gradient(135deg, #eef3f5 0%, #dfe8ea 46%, #f6f0e8 100%);
+}
+
+.timer-panel,
+.side-panel > section {
+    border: 1px solid rgba(23, 32, 42, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 20px 60px rgba(23, 32, 42, 0.1);
+}
+
+.timer-panel {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto auto;
+    min-height: calc(100vh - 56px);
+    padding: 28px;
+}
+
+.topbar,
+.section-heading,
+.stats-row,
+.session-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: #2f6f73;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    max-width: 520px;
+    margin-bottom: 0;
+    color: #101820;
+    font-size: 4.8rem;
+    line-height: 0.95;
+    letter-spacing: 0;
+}
+
+h2 {
+    margin-bottom: 0;
+    color: #17202a;
+    font-size: 1rem;
+}
+
+.today-total {
+    display: grid;
+    place-items: center;
+    min-width: 112px;
+    min-height: 96px;
+    border-radius: 8px;
+    color: #ffffff;
+    background: #2f6f73;
+}
+
+.today-total span {
+    font-size: 2.1rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.today-total small {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.mode-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 28px 0;
+    padding: 6px;
+    border-radius: 8px;
+    background: rgba(23, 32, 42, 0.07);
+}
+
+.mode-tab {
+    min-height: 44px;
+    border-radius: 6px;
+    color: #52616d;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mode-tab.is-active {
+    color: #101820;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(23, 32, 42, 0.08);
+}
+
+.timer-face {
+    display: grid;
+    place-items: center;
+    min-height: 290px;
+}
+
+.progress-ring {
+    position: relative;
+    width: min(58vh, 430px);
+    max-width: 100%;
+    aspect-ratio: 1;
+}
+
+.progress-ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ring-track,
+.ring-progress {
+    fill: none;
+    stroke-width: 14;
+}
+
+.ring-track {
+    stroke: rgba(23, 32, 42, 0.09);
+}
+
+.ring-progress {
+    stroke: #d85f45;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 220ms ease;
+}
+
+.time-readout {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.time-readout span {
+    color: #101820;
+    font-size: 7rem;
+    font-weight: 800;
+    line-height: 0.9;
+    font-variant-numeric: tabular-nums;
+}
+
+.time-readout small {
+    color: #52616d;
+    font-size: 1rem;
+}
+
+.task-field {
+    display: grid;
+    gap: 8px;
+    color: #52616d;
+    text-align: left;
+}
+
+.task-field input,
+.settings-grid input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid rgba(23, 32, 42, 0.14);
+    border-radius: 6px;
+    padding: 0 12px;
+    color: #17202a;
+    background: #ffffff;
+    outline: none;
+}
+
+.task-field input:focus,
+.settings-grid input:focus {
+    border-color: #2f6f73;
+    box-shadow: 0 0 0 3px rgba(47, 111, 115, 0.16);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.primary-btn,
+.secondary-btn,
+.text-btn {
+    min-height: 46px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.primary-btn {
+    color: #ffffff;
+    background: #d85f45;
+    font-weight: 800;
+}
+
+.secondary-btn {
+    color: #17202a;
+    background: #ffffff;
+    border: 1px solid rgba(23, 32, 42, 0.12);
+}
+
+.secondary-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.text-btn {
+    min-height: 34px;
+    padding: 0 10px;
+    color: #2f6f73;
+    background: rgba(47, 111, 115, 0.1);
+}
+
+.text-btn.danger {
+    color: #9d3d30;
+    background: rgba(216, 95, 69, 0.12);
+}
+
+.side-panel {
+    display: grid;
+    align-content: start;
+    gap: 18px;
+}
+
+.side-panel > section {
+    padding: 20px;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.settings-grid label {
+    display: grid;
+    gap: 7px;
+    color: #52616d;
+    text-align: left;
+}
+
+.stats-row {
+    margin: 16px 0;
+}
+
+.stats-row > div {
+    display: grid;
+    width: 100%;
+    min-height: 76px;
+    place-content: center;
+    border-radius: 8px;
+    color: #52616d;
+    background: rgba(23, 32, 42, 0.06);
+    text-align: center;
+}
+
+.stats-row strong {
+    color: #101820;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.session-list {
+    display: grid;
+    gap: 10px;
+    max-height: calc(100vh - 330px);
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    list-style: none;
+}
+
+.session-item,
+.empty-state {
+    min-height: 64px;
+    border-radius: 8px;
+    padding: 12px;
+    background: #ffffff;
+}
+
+.session-item strong,
+.session-item span {
+    display: block;
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.session-item strong {
+    color: #17202a;
+}
+
+.session-item span,
+.empty-state {
+    color: #52616d;
+}
+
+.session-item time {
+    flex: 0 0 auto;
+    color: #d85f45;
+    font-weight: 800;
+}
+
+@media (max-width: 860px) {
+    .app-shell {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+
+    .timer-panel {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .topbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .today-total {
+        min-height: 74px;
+    }
+
+    h1 {
+        font-size: 3.6rem;
+    }
+
+    .time-readout span {
+        font-size: 5.2rem;
+    }
+
+    .session-list {
+        max-height: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .mode-tabs,
+    .controls,
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .time-readout span {
+        font-size: 4rem;
+    }
+}
