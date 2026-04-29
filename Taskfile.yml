@@ -1,0 +1,37 @@
+version: '3'
+
+vars:
+  APP_NAME: "Podoro Timer"
+  APP_BUNDLE: "build/bin/Podoro Timer.app"
+
+tasks:
+  build:
+    summary: Builds the Podoro Timer desktop app
+    cmds:
+      - task: darwin:build
+
+  darwin:build:
+    summary: Builds the Podoro Timer app bundle for macOS
+    deps:
+      - task: darwin:icons
+    cmds:
+      - npm --prefix frontend run build
+      - go build -tags production -ldflags="-w -s" -o "build/bin/{{.APP_NAME}}"
+      - rm -rf "{{.APP_BUNDLE}}"
+      - mkdir -p "{{.APP_BUNDLE}}/Contents/MacOS"
+      - mkdir -p "{{.APP_BUNDLE}}/Contents/Resources"
+      - cp "build/bin/{{.APP_NAME}}" "{{.APP_BUNDLE}}/Contents/MacOS/{{.APP_NAME}}"
+      - cp build/darwin/Info.plist "{{.APP_BUNDLE}}/Contents/Info.plist"
+      - cp build/icons.icns "{{.APP_BUNDLE}}/Contents/Resources/iconfile.icns"
+      - rm "build/bin/{{.APP_NAME}}"
+    env:
+      GOCACHE: /tmp/go-build-cache
+      GOSUMDB: "off"
+      CGO_CFLAGS: "-mmacosx-version-min=11.0"
+      CGO_LDFLAGS: "-mmacosx-version-min=11.0"
+      MACOSX_DEPLOYMENT_TARGET: "11.0"
+
+  darwin:icons:
+    summary: Generates the macOS app icon set
+    cmds:
+      - wails3 generate icons -input build/appicon.png -macfilename build/icons.icns -macassetdir build
