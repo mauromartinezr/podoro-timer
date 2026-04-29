@@ -44,7 +44,7 @@ npm --prefix frontend run build
 ## Production Build
 
 ```bash
-task build
+wails3 build
 ```
 
 Outputs a `.app` bundle to `build/bin/Podoro Timer.app`.
