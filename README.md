@@ -1,6 +1,6 @@
 # Podoro Timer
 
-Podoro Timer is a desktop pomodoro timer built with Wails, Go, and a small vanilla frontend.
+Podoro Timer is a desktop pomodoro timer built with [Wails v3](https://v3.wails.io) (alpha), Go, and a vanilla JS frontend.
 
 Copyright (C) 2026 Mauricio Martinez <@mauromartinezr>
 
@@ -12,45 +12,48 @@ Copyright (C) 2026 Mauricio Martinez <@mauromartinezr>
 - Fullscreen gray break screen to encourage stepping away
 - Session recording with local history
 - Native app menu with About entry
+- System tray with live countdown and start/pause control
+- Window hides on close and restores from the system tray
 
-## Window Size
+## Requirements
 
-The app currently starts at `380x460`.
+- [Go](https://go.dev) 1.21+
+- [Node.js](https://nodejs.org) 18+
+- [Wails v3 CLI](https://v3.wails.io/getting-started/installation/) (`wails3`)
+
+Install the Wails v3 CLI:
+
+```bash
+go install github.com/wailsapp/wails/v3/cmd/wails3@latest
+```
 
 ## Development
 
-Install frontend dependencies:
+Run the app in development mode with hot-reload on Go file changes:
 
 ```bash
-cd frontend
-npm install
+wails3 dev
 ```
 
-Run the frontend build:
+The first run installs frontend dependencies and starts a Vite dev server on port 9245. Frontend changes require a manual rebuild:
 
 ```bash
-cd frontend
-npm run build
-```
-
-Run the desktop app in development:
-
-```bash
-wails dev
+npm --prefix frontend run build
 ```
 
 ## Production Build
 
 ```bash
-wails build
+task build
 ```
+
+Outputs a `.app` bundle to `build/bin/Podoro Timer.app`.
 
 ## Release
 
-First tagged release:
-
-- `v1.0.0`
+- `v1.0.0` — Initial release
+- `v1.1.0` — Tray countdown, show window fix, layout stability
 
 ## License
 
-This project is licensed under the GNU GPLv3. See [LICENSE](/Users/xhlar/coding/my-first-pomodoro-app/LICENSE).
+This project is licensed under the GNU GPLv3. See [LICENSE](LICENSE).
