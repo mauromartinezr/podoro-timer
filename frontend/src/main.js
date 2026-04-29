@@ -143,6 +143,7 @@ document.querySelector('#app').innerHTML = `
       <div class="about-content">
         <h2 id="aboutTitle">Podoro Timer</h2>
         <p>A simple focus timer for recording pomodoro sessions.</p>
+        <p class="about-meta">Copyright (C) 2026 Mauricio Martinez &lt;@mauromartinezr&gt;</p>
         <dl>
           <div>
             <dt>Focus</dt>
@@ -343,7 +344,7 @@ function completeSession(reason) {
 
   const completedFocus = reason === 'finished' && state.mode === 'focus';
   const completedBreak = reason === 'finished' && state.mode !== 'focus';
-  const nextMode = completedFocus ? 'shortBreak' : state.mode;
+  const nextMode = completedFocus ? getNextBreakMode() : state.mode;
 
   state.currentStart = null;
 
@@ -386,6 +387,11 @@ function setMode(mode, options = {}) {
   state.statusMessage = options.statusMessage || '';
 
   render();
+}
+
+function getNextBreakMode() {
+  const completedFocusSessions = state.sessions.filter((session) => session.mode === 'focus').length;
+  return completedFocusSessions % state.settings.longBreakEvery === 0 ? 'longBreak' : 'shortBreak';
 }
 
 function getModeDuration(mode) {

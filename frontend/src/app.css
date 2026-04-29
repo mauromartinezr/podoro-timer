@@ -375,6 +375,10 @@ h2 {
     color: #52616d;
 }
 
+.about-meta {
+    font-size: 0.9rem;
+}
+
 .about-content dl {
     display: grid;
     gap: 10px;

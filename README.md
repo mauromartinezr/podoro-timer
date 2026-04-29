@@ -1,19 +1,56 @@
-# README
+# Podoro Timer
 
-## About
+Podoro Timer is a desktop pomodoro timer built with Wails, Go, and a small vanilla frontend.
 
-This is the official Wails Vanilla template.
+Copyright (C) 2026 Mauricio Martinez <@mauromartinezr>
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+## Features
 
-## Live Development
+- Focus, short break, and long break modes
+- Work and Study duration profiles
+- Automatic short break start after a completed focus session
+- Fullscreen gray break screen to encourage stepping away
+- Session recording with local history
+- Native app menu with About entry
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+## Window Size
 
-## Building
+The app currently starts at `380x460`.
 
-To build a redistributable, production mode package, use `wails build`.
+## Development
+
+Install frontend dependencies:
+
+```bash
+cd frontend
+npm install
+```
+
+Run the frontend build:
+
+```bash
+cd frontend
+npm run build
+```
+
+Run the desktop app in development:
+
+```bash
+wails dev
+```
+
+## Production Build
+
+```bash
+wails build
+```
+
+## Release
+
+First tagged release:
+
+- `v1.0.0`
+
+## License
+
+This project is licensed under the GNU GPLv3. See [LICENSE](/Users/xhlar/coding/my-first-pomodoro-app/LICENSE).
