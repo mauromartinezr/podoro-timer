@@ -4,9 +4,11 @@ frontend/node_modules/
 
 # Frontend build output
 frontend/dist/
+frontend/package.json.md5
 
 # Wails and Go build output
 build/bin/
+/my-first-pomodoro-app
 *.exe
 *.dll
 *.so
