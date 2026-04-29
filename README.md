@@ -17,7 +17,7 @@ Copyright (C) 2026 Mauricio Martinez <@mauromartinezr>
 
 ## Requirements
 
-- [Go](https://go.dev) 1.21+
+- [Go](https://go.dev) 1.24+
 - [Node.js](https://nodejs.org) 18+
 - [Wails v3 CLI](https://v3.wails.io/getting-started/installation/) (`wails3`)
 
