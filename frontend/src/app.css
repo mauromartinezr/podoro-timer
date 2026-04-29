@@ -1,8 +1,8 @@
 .app-shell {
     display: grid;
-    place-items: center;
+    place-items: stretch;
     min-height: 100vh;
-    padding: 28px;
+    padding: 0;
     background:
         radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.85), transparent 34%),
         linear-gradient(135deg, #eef3f5 0%, #dfe8ea 46%, #f6f0e8 100%);
@@ -44,7 +44,7 @@ body[data-break-screen="active"] .ring-progress {
 }
 
 body[data-break-screen="active"] .time-readout span {
-    font-size: 8rem;
+    font-size: 7.2rem;
 }
 
 body[data-break-screen="active"] .center-play-btn {
@@ -60,13 +60,13 @@ body[data-break-screen="active"] .status-message {
     position: relative;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    width: min(100%, 760px);
-    min-height: calc(100vh - 56px);
-    border: 1px solid rgba(23, 32, 42, 0.1);
-    border-radius: 8px;
+    width: 100%;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
     padding: 28px;
     background: rgba(255, 255, 255, 0.82);
-    box-shadow: 0 20px 60px rgba(23, 32, 42, 0.1);
+    box-shadow: none;
 }
 
 .topbar,
@@ -276,7 +276,7 @@ h2 {
 
 .time-readout span {
     color: #101820;
-    font-size: 6.5rem;
+    font-size: 5.8rem;
     font-weight: 800;
     line-height: 0.9;
     font-variant-numeric: tabular-nums;
@@ -544,10 +544,6 @@ h2 {
 }
 
 @media (max-width: 860px) {
-    .app-shell {
-        padding: 16px;
-    }
-
     .timer-panel {
         min-height: auto;
         padding: 20px;
@@ -559,7 +555,7 @@ h2 {
     }
 
     .time-readout span {
-        font-size: 5.2rem;
+        font-size: 4.7rem;
     }
 
     .sidebar-panel {
@@ -573,6 +569,6 @@ h2 {
     }
 
     .time-readout span {
-        font-size: 4rem;
+        font-size: 3.6rem;
     }
 }

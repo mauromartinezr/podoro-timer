@@ -49,7 +49,7 @@ state.secondsLeft = state.settings.focus * 60;
 
 document.querySelector('#app').innerHTML = `
   <main class="app-shell">
-    <section class="timer-panel" aria-label="Pomodoro timer">
+    <section class="timer-panel" aria-label="Podoro Timer">
       <div class="topbar">
         <div class="top-actions">
           <button class="menu-btn" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebarPanel">
@@ -59,7 +59,7 @@ document.querySelector('#app').innerHTML = `
       </div>
 
       <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
-      <aside class="sidebar-panel" id="sidebarPanel" aria-label="Pomodoro menu" aria-hidden="true">
+      <aside class="sidebar-panel" id="sidebarPanel" aria-label="Podoro Timer menu" aria-hidden="true">
         <div class="sidebar-header">
           <h2>Menu</h2>
           <button class="icon-btn" id="closeSidebarBtn" type="button" aria-label="Close menu">x</button>
@@ -141,7 +141,7 @@ document.querySelector('#app').innerHTML = `
 
     <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
       <div class="about-content">
-        <h2 id="aboutTitle">Pomodoro</h2>
+        <h2 id="aboutTitle">Podoro Timer</h2>
         <p>A simple focus timer for recording pomodoro sessions.</p>
         <dl>
           <div>

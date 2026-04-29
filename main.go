@@ -19,9 +19,9 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "my-first-pomodoro-app",
-		Width:  1024,
-		Height: 768,
+		Title:  "Podoro Timer",
+		Width:  380,
+		Height: 460,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
@@ -40,12 +40,12 @@ func main() {
 
 func applicationMenu(app *App) *menu.Menu {
 	appMenu := menu.NewMenu()
-	pomodoroMenu := appMenu.AddSubmenu("Pomodoro")
-	pomodoroMenu.AddText("About Pomodoro", nil, func(_ *menu.CallbackData) {
+	pomodoroMenu := appMenu.AddSubmenu("Podoro Timer")
+	pomodoroMenu.AddText("About Podoro Timer", nil, func(_ *menu.CallbackData) {
 		wailsruntime.EventsEmit(app.ctx, "show-about")
 	})
 	pomodoroMenu.AddSeparator()
-	pomodoroMenu.AddText("Quit Pomodoro", nil, func(_ *menu.CallbackData) {
+	pomodoroMenu.AddText("Quit Podoro Timer", nil, func(_ *menu.CallbackData) {
 		wailsruntime.Quit(app.ctx)
 	})
 
