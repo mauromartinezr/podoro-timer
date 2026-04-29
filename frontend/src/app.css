@@ -1,7 +1,8 @@
 .app-shell {
     display: grid;
     place-items: stretch;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     padding: 0;
     background:
         radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.85), transparent 34%),
@@ -59,9 +60,10 @@ body[data-break-screen="active"] .status-message {
 .timer-panel {
     position: relative;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr auto auto;
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
     border: 0;
     border-radius: 0;
     padding: 28px;
@@ -289,10 +291,13 @@ h2 {
 
 .status-message {
     min-height: 20px;
-    margin: -6px 0 0;
+    max-width: 58%;
+    margin: -6px auto 0;
     color: #2f6f73;
     font-size: 0.95rem;
     font-weight: 800;
+    text-align: center;
+    word-break: break-word;
 }
 
 .status-message[hidden] {
@@ -333,6 +338,7 @@ h2 {
 
 .quick-action-btn {
     justify-self: center;
+    align-self: end;
     min-height: 34px;
     border-radius: 6px;
     padding: 0 14px;
@@ -342,7 +348,8 @@ h2 {
 }
 
 .quick-action-btn[hidden] {
-    display: none;
+    display: block;
+    visibility: hidden;
 }
 
 .about-dialog {

@@ -1,0 +1,34 @@
+version: '3'
+
+info:
+  productName: "Podoro Timer"
+  productIdentifier: "com.mauromartinezr.podorotimer"
+  description: "A simple focus timer for recording pomodoro sessions."
+  copyright: "(C) 2026 Mauricio Martinez"
+  version: "1.0.0"
+
+dev_mode:
+  root_path: .
+  log_level: warn
+  debounce: 1000
+  ignore:
+    dir:
+      - .git
+      - node_modules
+      - frontend
+      - build/bin
+    file:
+      - .DS_Store
+      - .gitignore
+    watched_extension:
+      - "*.go"
+    git_ignore: true
+  executes:
+    - cmd: npm --prefix frontend install
+      type: once
+    - cmd: npm --prefix frontend run dev -- --port 9245
+      type: background
+    - cmd: go build -o build/bin/podoro-dev .
+      type: blocking
+    - cmd: ./build/bin/podoro-dev
+      type: primary

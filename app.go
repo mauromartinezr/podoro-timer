@@ -1,27 +1,83 @@
 package main
 
 import (
-	"context"
 	"fmt"
+
+	"github.com/wailsapp/wails/v3/pkg/application"
 )
 
-// App struct
 type App struct {
-	ctx context.Context
+	app    *application.App
+	window *application.WebviewWindow
+	tray   *application.SystemTray
 }
 
-// NewApp creates a new App application struct
 func NewApp() *App {
 	return &App{}
 }
 
-// startup is called when the app starts. The context is saved
-// so we can call the runtime methods
-func (a *App) startup(ctx context.Context) {
-	a.ctx = ctx
+func (a *App) SetApplication(app *application.App) {
+	a.app = app
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+func (a *App) SetWindow(window *application.WebviewWindow) {
+	a.window = window
+}
+
+func (a *App) SetTray(tray *application.SystemTray) {
+	a.tray = tray
+}
+
+func (a *App) UpdateTimerState(isRunning bool, secondsLeft int, mode string) {
+	if a == nil || a.tray == nil {
+		return
+	}
+
+	minutes := secondsLeft / 60
+	secs := secondsLeft % 60
+	timeStr := fmt.Sprintf("%02d:%02d", minutes, secs)
+
+	var icon string
+	if isRunning {
+		icon = "▶"
+	} else {
+		icon = "⏸"
+	}
+
+	a.tray.SetLabel(fmt.Sprintf("%s %s", icon, timeStr))
+}
+
+func (a *App) ShowWindow() {
+	if a == nil || a.window == nil {
+		return
+	}
+
+	a.window.Show()
+	a.window.UnMinimise()
+	a.window.Center()
+	a.window.Focus()
+}
+
+func (a *App) ToggleTimerFromTray() {
+	if a == nil || a.window == nil {
+		return
+	}
+
+	a.window.EmitEvent("tray-toggle-timer")
+}
+
+func (a *App) ShowAboutFromTray() {
+	if a == nil || a.window == nil {
+		return
+	}
+
+	a.window.EmitEvent("show-about")
+}
+
+func (a *App) Quit() {
+	if a == nil || a.app == nil {
+		return
+	}
+
+	a.app.Quit()
 }

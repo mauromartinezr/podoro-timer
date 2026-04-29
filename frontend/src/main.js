@@ -1,6 +1,6 @@
 import './style.css';
 import './app.css';
-import { EventsOn, WindowFullscreen, WindowUnfullscreen } from '../wailsjs/runtime/runtime';
+import { Events, Window } from '@wailsio/runtime';
 import logo from './assets/images/logo-universal.png';
 
 const STORAGE_KEY = 'pomodoro.sessions.v1';
@@ -126,12 +126,13 @@ document.querySelector('#app').innerHTML = `
             </button>
             <small id="modeDisplay">Focus session</small>
             <p class="status-message" id="statusMessage" aria-live="polite"></p>
-            <button class="quick-action-btn" id="quickActionBtn" type="button" hidden>
-              Complete focus
-            </button>
           </div>
         </div>
       </div>
+
+      <button class="quick-action-btn" id="quickActionBtn" type="button" hidden>
+        Complete focus
+      </button>
 
       <div class="mode-tabs" role="tablist" aria-label="Timer modes">
         <button class="mode-tab is-active" data-mode="focus" type="button">focus</button>
@@ -243,9 +244,10 @@ function bindEvents() {
     }
   });
 
-  if (window.runtime?.EventsOnMultiple) {
-    EventsOn('show-about', openAboutDialog);
-  }
+  Events.On('show-about', openAboutDialog);
+  Events.On('tray-toggle-timer', () => {
+    toggleTimer();
+  });
 }
 
 function openAboutDialog() {
@@ -261,6 +263,7 @@ function openAboutDialog() {
 function closeAboutDialog() {
   elements.aboutDialog.close();
 }
+
 
 function completePausedTimer() {
   if (state.mode === 'focus') {
@@ -300,6 +303,7 @@ function toggleTimer() {
   if (state.isRunning) {
     stopTicker();
     state.statusMessage = 'Paused';
+    emitTimerState();
     render();
     return;
   }
@@ -321,6 +325,7 @@ function tick() {
     return;
   }
 
+  emitTimerState();
   renderTimer();
 }
 
@@ -436,10 +441,11 @@ function renderTimer() {
   const duration = getModeDuration(state.mode);
   const progress = duration === 0 ? 0 : 1 - state.secondsLeft / duration;
   const hasElapsed = progress > 0;
-  const canUseQuickAction = !state.isRunning && hasElapsed;
+  const canUseQuickAction = !state.isRunning && progress > 0;
 
   elements.timeDisplay.textContent = formatSeconds(state.secondsLeft);
   elements.modeDisplay.textContent = `${modeLabels[state.mode]} session`;
+  elements.modeDisplay.hidden = state.statusMessage !== '';
   elements.statusMessage.textContent = state.statusMessage;
   elements.statusMessage.hidden = state.statusMessage === '';
   elements.playPauseBtn.setAttribute('aria-label', state.isRunning ? 'Pause timer' : 'Start timer');
@@ -536,7 +542,16 @@ function startTimer(statusMessage) {
   state.statusMessage = statusMessage;
   state.isRunning = true;
   state.intervalId = window.setInterval(tick, 1000);
+  emitTimerState();
   render();
+}
+
+function emitTimerState() {
+  Events.Emit('timer-state-update', {
+    isRunning: state.isRunning,
+    secondsLeft: state.secondsLeft,
+    mode: state.mode,
+  });
 }
 
 function requestNotificationPermission() {
@@ -560,22 +575,12 @@ function showTimerNotification(title, body) {
 
 function enterBreakScreen() {
   document.body.dataset.breakScreen = 'active';
-
-  if (!window.runtime?.WindowFullscreen) {
-    return;
-  }
-
-  WindowFullscreen();
+  void Window.Fullscreen();
 }
 
 function exitBreakScreen() {
   delete document.body.dataset.breakScreen;
-
-  if (!window.runtime?.WindowUnfullscreen) {
-    return;
-  }
-
-  WindowUnfullscreen();
+  void Window.UnFullscreen();
 }
 
 function isBreakScreenActive() {
