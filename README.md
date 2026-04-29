@@ -37,11 +37,7 @@ Run the app in development mode with hot-reload on Go file changes:
 wails3 dev
 ```
 
-The first run installs frontend dependencies and starts a Vite dev server on port 9245. Frontend changes require a manual rebuild:
-
-```bash
-npm --prefix frontend run build
-```
+The first run installs frontend dependencies and starts a Vite dev server on port 9245 with hot-reload. Go file changes trigger an automatic rebuild and restart of the app.
 
 ## Production Build
 
