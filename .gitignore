@@ -8,6 +8,7 @@ frontend/package.json.md5
 
 # Wails and Go build output
 build/bin/
+build/icons.icns
 /my-first-pomodoro-app
 *.exe
 *.dll
