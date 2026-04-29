@@ -366,8 +366,17 @@ h2 {
     text-align: left;
 }
 
+.about-logo {
+    width: 72px;
+    height: 72px;
+    justify-self: center;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
 .about-content h2 {
     font-size: 1.45rem;
+    text-align: center;
 }
 
 .about-content p {

@@ -1,6 +1,7 @@
 import './style.css';
 import './app.css';
 import { EventsOn, WindowFullscreen, WindowUnfullscreen } from '../wailsjs/runtime/runtime';
+import logo from './assets/images/logo-universal.png';
 
 const STORAGE_KEY = 'pomodoro.sessions.v1';
 const SETTINGS_KEY = 'pomodoro.settings.v1';
@@ -141,6 +142,7 @@ document.querySelector('#app').innerHTML = `
 
     <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
       <div class="about-content">
+        <img class="about-logo" src="${logo}" alt="Podoro Timer logo" />
         <h2 id="aboutTitle">Podoro Timer</h2>
         <p>A simple focus timer for recording pomodoro sessions.</p>
         <p class="about-meta">Copyright (C) 2026 Mauricio Martinez &lt;@mauromartinezr&gt;</p>
