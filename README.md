@@ -1,5 +1,7 @@
 # Podoro Timer
 
+![Podoro Timer](https://i.ibb.co/nsHwjsSR/9441194ce7f8.png)
+
 Podoro Timer is a desktop pomodoro timer built with [Wails v3](https://v3.wails.io) (alpha), Go, and a vanilla JS frontend.
 
 Copyright (C) 2026 Mauricio Martinez <@mauromartinezr>
